@@ -269,7 +269,7 @@ class MPT():
             images_to_video(img_folder=tmp_write_folder, output_vid_file=output_file)
             shutil.rmtree(tmp_write_folder)
 
-    def __call__(self, image_folder, output_file=None):
+    def __call__(self, image, output_file=None):
         '''
         Execute MPT and return results as a dictionary of person instances
 
@@ -277,13 +277,13 @@ class MPT():
         :return: a dictionary of person instances
         '''
 
-        image_dataset = ImageFolder(image_folder)
+        image_dataset = Image(image)
 
         dataloader = DataLoader(image_dataset, batch_size=self.batch_size, num_workers=0)
 
         trackers = self.run_tracker(dataloader)
-        if self.display:
-            self.display_results(image_folder, trackers, output_file)
+#         if self.display:
+#             self.display_results(image_folder, trackers, output_file)
 
         if self.output_format == 'dict':
             result = self.prepare_output_tracks(trackers)

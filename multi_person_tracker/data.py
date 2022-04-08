@@ -40,6 +40,15 @@ def images_to_video(img_folder, output_vid_file):
     print(f'Running \"{" ".join(command)}\"')
     subprocess.call(command)
 
+class Image(Dataset):
+    def __init__(self, image):
+        self.image = image
+
+    def __len__(self):
+        return 1
+
+    def __getitem__(self, idx):
+        return to_tensor(self.image)
 
 class ImageFolder(Dataset):
     def __init__(self, image_folder):
