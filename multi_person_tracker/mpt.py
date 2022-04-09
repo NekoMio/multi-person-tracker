@@ -11,7 +11,7 @@ from torchvision.models.detection import keypointrcnn_resnet50_fpn
 from yolov3.yolo import YOLOv3
 
 from multi_person_tracker import Sort
-from multi_person_tracker.data import ImageFolder, images_to_video
+from multi_person_tracker.data import ImageFolder, images_to_video, Image
 
 class MPT():
     def __init__(
