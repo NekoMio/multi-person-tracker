@@ -1,3 +1,4 @@
+from email.mime import image
 import os
 import cv2
 import subprocess
@@ -41,14 +42,14 @@ def images_to_video(img_folder, output_vid_file):
     subprocess.call(command)
 
 class Image(Dataset):
-    def __init__(self, image):
-        self.image = image
+    def __init__(self, images):
+        self.images = images
 
     def __len__(self):
-        return 1
+        return len(self.images)
 
     def __getitem__(self, idx):
-        return to_tensor(self.image)
+        return to_tensor(self.images[idx])
 
 class ImageFolder(Dataset):
     def __init__(self, image_folder):
