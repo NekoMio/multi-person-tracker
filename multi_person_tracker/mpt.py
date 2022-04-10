@@ -72,7 +72,7 @@ class MPT():
         start = time.time()
         print('Running Multi-Person-Tracker')
         trackers = []
-        for batch in tqdm(dataloader):
+        for batch in dataloader:
             batch = batch.to(self.device)
 
             predictions = self.detector(batch)
@@ -92,7 +92,7 @@ class MPT():
 
         runtime = time.time() - start
         fps = len(dataloader.dataset) / runtime
-        print(f'Finished. Detection + Tracking FPS {fps:.2f}')
+#         print(f'Finished. Detection + Tracking FPS {fps:.2f}')
         return trackers
 
     @torch.no_grad()
